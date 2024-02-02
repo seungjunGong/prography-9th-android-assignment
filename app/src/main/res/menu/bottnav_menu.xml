@@ -3,12 +3,14 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_house"
+        android:icon="@drawable/ic_house_selector"
+        android:enabled="true"
         android:title="home"/>
 
     <item
-        android:id="@+id/randomFragment"
-        android:icon="@drawable/ic_cards"
-        android:title="random"/>
+        android:id="@+id/randomPhotoFragment"
+        android:icon="@drawable/ic_cards_selector"
+        android:enabled="true"
+        android:title="randomPhoto"/>
 
 </menu>

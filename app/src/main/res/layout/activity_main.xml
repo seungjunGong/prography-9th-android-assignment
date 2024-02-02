@@ -6,29 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <!--
     <View
         android:id="@+id/main_bottView"
         android:layout_width="match_parent"
         android:layout_height="34dp"
-        android:background="@color/black"
+        android:background="@color/black_90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+    -->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_bottNav"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:background="@color/black"
+        android:background="@color/black_90"
+        app:itemBackground="@color/black_90"
         app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toTopOf="@id/main_bottView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/bottnav_menu"/>
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/main_bottNav"
         app:layout_constraintStart_toStartOf="parent"
