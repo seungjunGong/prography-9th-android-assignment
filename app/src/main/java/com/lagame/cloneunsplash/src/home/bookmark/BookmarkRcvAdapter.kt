@@ -1,4 +1,4 @@
-package com.lagame.cloneunsplash.home.bookmark
+package com.lagame.cloneunsplash.src.home.bookmark
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

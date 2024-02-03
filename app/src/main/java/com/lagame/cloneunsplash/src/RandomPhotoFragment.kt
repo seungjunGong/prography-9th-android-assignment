@@ -1,4 +1,4 @@
-package com.lagame.cloneunsplash
+package com.lagame.cloneunsplash.src
 
 import android.os.Bundle
 import android.util.Log
