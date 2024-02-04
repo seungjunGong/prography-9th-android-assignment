@@ -89,6 +89,7 @@ class DetailFragment: Fragment() {
             editor.apply() // SharedPreferences 적용
         }
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
        

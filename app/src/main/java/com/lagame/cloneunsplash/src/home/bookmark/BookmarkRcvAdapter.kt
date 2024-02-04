@@ -9,7 +9,13 @@ import com.lagame.cloneunsplash.databinding.HomeRcvBookmarkItemBinding
 
 class BookmarkRcvAdapter(private val itemsData: ArrayList<BookMarkDTO>): RecyclerView.Adapter<BookmarkRcvAdapter.ViewHolder>() {
 
-
+    interface BookmarkClickListener {
+        fun onBookmarkClick(url: String?, id: String?)
+    }
+    private lateinit var fBookmarkClickListener: BookmarkRcvAdapter.BookmarkClickListener
+    fun setBookmarkClickListener(bookmarkClickListener: BookmarkRcvAdapter.BookmarkClickListener){
+        fBookmarkClickListener = bookmarkClickListener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: HomeRcvBookmarkItemBinding = HomeRcvBookmarkItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,6 +36,10 @@ class BookmarkRcvAdapter(private val itemsData: ArrayList<BookMarkDTO>): Recycle
                 .placeholder(R.drawable.loading)
                 .error(R.drawable.ic_launcher_background)
                 .into(binding.homeRcvBookmarkIv)
+
+            binding.homeRcvBookmarkIv.setOnClickListener {
+                fBookmarkClickListener.onBookmarkClick(url = data.url, id = data.id)
+            }
         }
     }
 

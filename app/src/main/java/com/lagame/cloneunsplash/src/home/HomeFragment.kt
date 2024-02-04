@@ -67,14 +67,22 @@ class HomeFragment : Fragment(), HomeFragmentInterface {
             Log.d("Test","res: ${bookmarks.toString()}")
             val bookmarkRcvAdapter = BookmarkRcvAdapter(bookmarks)
             binding.homeRcvBookmark.adapter = bookmarkRcvAdapter
+
+            // go to detail
+            bookmarkRcvAdapter.setBookmarkClickListener(object : BookmarkRcvAdapter.BookmarkClickListener{
+                override fun onBookmarkClick(url: String?, id: String?) {
+                    val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(url, id)
+                    Navigation.findNavController(requireView()).navigate(action)
+                }
+            })
+
+
             binding.homeBookmark.visibility = View.VISIBLE
             binding.homeTvBookmark.visibility = View.VISIBLE
         }else{
             binding.homeBookmark.visibility = View.GONE
             binding.homeTvBookmark.visibility = View.GONE
         }
-
-
     }
 
     // rcv 데이터 불러오기

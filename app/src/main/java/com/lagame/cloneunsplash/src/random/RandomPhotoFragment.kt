@@ -48,8 +48,17 @@ class RandomPhotoFragment : Fragment(), RandomPhotoFragmentInterface {
     private fun randomPhotosConfig(photos: ArrayList<HomePhotosDTO>) {
 
         binding.randomPhotoVp.apply {
-            adapter = RandomPhotoVpAdapter(photos)
+            val vp = RandomPhotoVpAdapter(photos)
+            adapter = vp
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+            // 버튼 클릭 이벤트 설정
+            vp.setInfoClickListener(object : RandomPhotoVpAdapter.InfoClickListener{
+                override fun onInfoClick(url: String, id: String) {
+                    val action = RandomPhotoFragmentDirections.actionRandomPhotoFragmentToDetailFragment(url, id)
+                    Navigation.findNavController(requireView()).navigate(action)
+                }
+            })
         }
     }
 
