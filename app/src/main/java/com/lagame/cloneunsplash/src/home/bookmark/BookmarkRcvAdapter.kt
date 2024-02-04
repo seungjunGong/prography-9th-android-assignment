@@ -7,6 +7,8 @@ import com.lagame.cloneunsplash.databinding.HomeRcvBookmarkItemBinding
 
 class BookmarkRcvAdapter(private val itemsData: ArrayList<BookmarkItemsData>): RecyclerView.Adapter<BookmarkRcvAdapter.ViewHolder>() {
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding: HomeRcvBookmarkItemBinding = HomeRcvBookmarkItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)

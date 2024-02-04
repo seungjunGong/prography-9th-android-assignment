@@ -1,6 +1,7 @@
 package com.lagame.cloneunsplash.src
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -26,6 +27,10 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.mainBottNav, navController)
 
+    }
+
+    fun HideBottomNavi(state: Boolean){
+        if(state) binding.mainBottNav.visibility = View.GONE else binding.mainBottNav.visibility = View.VISIBLE
     }
 
 }
