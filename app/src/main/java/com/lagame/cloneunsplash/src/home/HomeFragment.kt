@@ -10,8 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
+import com.lagame.cloneunsplash.config.ApplicationClass
+import com.lagame.cloneunsplash.config.ApplicationClass.Companion.bookmarks
+import com.lagame.cloneunsplash.config.ApplicationClass.Companion.sSharedPreferences
 import com.lagame.cloneunsplash.databinding.FragmentHomeBinding
-import com.lagame.cloneunsplash.src.home.bookmark.BookmarkItemsData
+import com.lagame.cloneunsplash.src.home.bookmark.BookMarkDTO
 import com.lagame.cloneunsplash.src.home.bookmark.BookmarkRcvAdapter
 import com.lagame.cloneunsplash.src.home.photos.HomePhotosDTO
 import com.lagame.cloneunsplash.src.home.photos.PhotosRcvAdapter
@@ -53,14 +59,22 @@ class HomeFragment : Fragment(), HomeFragmentInterface {
             StaggeredGridLayoutManager(1, LinearLayoutManager.HORIZONTAL)
         binding.homeRcvBookmark.layoutManager = photoLayoutManager
 
-        var itemsData = ArrayList<BookmarkItemsData>()
-        itemsData.add(BookmarkItemsData("_url", 150, 120))
-        itemsData.add(BookmarkItemsData("_url", 150, 120))
-        itemsData.add(BookmarkItemsData("_url", 150, 120))
-        itemsData.add(BookmarkItemsData("_url", 150, 120))
+        val bookMarkJson : String? = sSharedPreferences.getString("bookmark", null)
+        if(bookMarkJson != null && bookMarkJson != "[]") {
+            bookmarks = GsonBuilder().create().fromJson(
+                bookMarkJson, object : TypeToken<ArrayList<BookMarkDTO>>() {}.type
+            )
+            Log.d("Test","res: ${bookmarks.toString()}")
+            val bookmarkRcvAdapter = BookmarkRcvAdapter(bookmarks)
+            binding.homeRcvBookmark.adapter = bookmarkRcvAdapter
+            binding.homeBookmark.visibility = View.VISIBLE
+            binding.homeTvBookmark.visibility = View.VISIBLE
+        }else{
+            binding.homeBookmark.visibility = View.GONE
+            binding.homeTvBookmark.visibility = View.GONE
+        }
 
-        val bookmarkRcvAdapter = BookmarkRcvAdapter(itemsData)
-        binding.homeRcvBookmark.adapter = bookmarkRcvAdapter
+
     }
 
     // rcv 데이터 불러오기
@@ -75,8 +89,8 @@ class HomeFragment : Fragment(), HomeFragmentInterface {
         
         // 버튼 클릭 이벤트 설정
         photosRcvAdapter.setPhotoClickListener(object : PhotosRcvAdapter.PhotoClickListener{
-            override fun onPhotoClick(url: String) {
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(url)
+            override fun onPhotoClick(url: String, id: String) {
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(url, id)
                 Navigation.findNavController(requireView()).navigate(action)
             }
         })

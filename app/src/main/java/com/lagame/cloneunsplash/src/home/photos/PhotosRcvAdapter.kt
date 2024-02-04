@@ -20,7 +20,7 @@ import kotlin.coroutines.coroutineContext
 class PhotosRcvAdapter (private val itemsData: List<HomePhotosDTO>): RecyclerView.Adapter<PhotosRcvAdapter.ViewHolder>() {
 
     interface PhotoClickListener {
-        fun onPhotoClick(url: String)
+        fun onPhotoClick(url: String, id: String)
     }
     private lateinit var fPhotoClickListener: PhotoClickListener
     fun setPhotoClickListener(photoClickListener: PhotoClickListener){
@@ -43,11 +43,12 @@ class PhotosRcvAdapter (private val itemsData: List<HomePhotosDTO>): RecyclerVie
             Glide
                 .with(binding.homeRcvPhotoIv.context)
                 .load(data.urls.raw)
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.ic_launcher_background)
                 .into(binding.homeRcvPhotoIv)
 
             binding.homeRcvPhotoIv.setOnClickListener {
-                fPhotoClickListener.onPhotoClick(url = data.urls.raw)
+                fPhotoClickListener.onPhotoClick(url = data.urls.raw, id = data.id)
             }
         }
     }

@@ -22,6 +22,7 @@
             <include android:id="@+id/home_title" layout="@layout/base_header_view"/>
 
             <TextView
+                android:id="@+id/home_tv_bookmark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="북마크"
@@ -33,6 +34,7 @@
                 android:layout_marginStart="@dimen/base_side_margin"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_bookmark"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

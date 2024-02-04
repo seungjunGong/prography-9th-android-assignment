@@ -2,6 +2,7 @@ package com.lagame.cloneunsplash.config
 
 import android.app.Application
 import android.content.SharedPreferences
+import com.lagame.cloneunsplash.src.home.bookmark.BookMarkDTO
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -20,6 +21,9 @@ class ApplicationClass: Application() {
         // ACCESS Token Header 키 값
         // please hide code
         const val X_ACCESS_TOKEN = "Client-ID wRXcWIir-9YYKluXfnbMHfTCiEq8YQuB38uY7l_ndyE"
+
+        // bookmark variables
+        var bookmarks = ArrayList<BookMarkDTO>()
     }
 
     override fun onCreate() {

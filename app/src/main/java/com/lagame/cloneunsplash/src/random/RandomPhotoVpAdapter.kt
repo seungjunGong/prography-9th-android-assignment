@@ -29,7 +29,8 @@ class RandomPhotoVpAdapter(private val itemsData: ArrayList<HomePhotosDTO>) :
             Glide
                 .with(binding.randomPhotoRcvIv.context)
                 .load(data.urls.raw)
-                .placeholder(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.ic_launcher_background)
                 .into(binding.randomPhotoRcvIv)
         }
     }

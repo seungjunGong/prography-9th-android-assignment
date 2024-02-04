@@ -10,4 +10,5 @@
     <color name="checked_btn">#FFFFFF</color>
     <color name="unchecked_btn">#7A7A7A</color>
     <color name="black_90">#E6000000</color>
+    <color name="loading_background">#F5F6FA</color>
 </resources>

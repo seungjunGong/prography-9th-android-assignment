@@ -56,7 +56,7 @@ class RandomPhotoFragment : Fragment(), RandomPhotoFragmentInterface {
     override fun onGetRandomPhotosSuccess(response: HomePhotosDTO) {
         Log.d("Retrofit", "$response")
         randomPhotos.add(response)
-        if(randomPhotos.size < 5)
+        if(randomPhotos.size < 3)
             RandomPhotoService(this).tryGetRandomPhotos()
         else
             randomPhotosConfig(randomPhotos)

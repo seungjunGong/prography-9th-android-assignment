@@ -3,9 +3,11 @@ package com.lagame.cloneunsplash.src.home.bookmark
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.lagame.cloneunsplash.R
 import com.lagame.cloneunsplash.databinding.HomeRcvBookmarkItemBinding
 
-class BookmarkRcvAdapter(private val itemsData: ArrayList<BookmarkItemsData>): RecyclerView.Adapter<BookmarkRcvAdapter.ViewHolder>() {
+class BookmarkRcvAdapter(private val itemsData: ArrayList<BookMarkDTO>): RecyclerView.Adapter<BookmarkRcvAdapter.ViewHolder>() {
 
 
 
@@ -21,8 +23,13 @@ class BookmarkRcvAdapter(private val itemsData: ArrayList<BookmarkItemsData>): R
     override fun getItemCount(): Int = itemsData.size
 
     inner class ViewHolder(private val binding: HomeRcvBookmarkItemBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(data: BookmarkItemsData){
-
+        fun bind(data: BookMarkDTO){
+            Glide
+                .with(binding.homeRcvBookmarkIv.context)
+                .load(data.url)
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.ic_launcher_background)
+                .into(binding.homeRcvBookmarkIv)
         }
     }
 
